@@ -1,0 +1,50 @@
+---
+title: "Developing Data Products - Course Project Week 2"
+author: "Gabriela Conde"
+date: "25 de noviembre de 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Montevideo City Tourist Attractions
+
+```{r echo=FALSE, comment="", message=FALSE, warning=FALSE}
+library(leaflet)
+
+UruguayIcon<-makeIcon( 
+  iconUrl = "http://pngimg.com/uploads/sapphire/sapphire_PNG24.png",
+  iconWidth = 20*215/230, iconHeight = 20, iconAnchorX = 20*215/230/2, iconAnchorY = 16)
+
+UruguayLatLong<-data.frame(lat=c(-34.858807,-34.891082,-34.906638,-34.888376,-34.890371, -34.920928,
+                                 -34.906413,-34.886819,-34.904164, -34.924030,-34.906383, -34.913782,-34.894532),
+                           lng=c(-56.199905,-56.187065,-56.203344,-56.259863,-56.055195,-56.149782,
+                                 -56.170952,-56.183222,-56.170497,-56.158547,-56.186143,-56.164572, -56.152836))
+
+
+UruguaySites<-c("<a href='https://jardinbotanico.montevideo.gub.uy/'>Jardin Botanico</a>",
+                "<a href='https://parlamento.gub.uy/sobreelparlamento/palacio/'>Palacio Legislativo</a>",
+                "<a href='https://municipiob.montevideo.gub.uy/node/208'>Plaza Matriz</a>",
+                "<a href='https://municipioa.montevideo.gub.uy/node/169'>Fortaleza del Cerro</a>",
+                "<a href='https://sofitelmontevideocasinocarrasco.com-hotel.com/es/'>Sofitel Casino</a>",
+                "<a href='https://www.castillopittamiglio.org/'>Castillo Pittamiglio</a>",
+                "<a href='https://www.escaramuza.com.uy/'>Escaramuza</a>",
+                "<a href='https://www.mam.com.uy/'>Mercado Agricola</a>",
+                "<a href='https://mercadoferrando.com/'>Mercado Ferrando</a>",
+                "<a href='https://www.puntacarretas.com.uy/'>Punta Carretas Shopping</a>",
+                "<a href='https://montevideo.gub.uy/areas-tematicas/turismo/mirador-panoramico'>Mirador Panoramico de Montevideo</a>",
+                "<a href='http://mnav.gub.uy/m.php'>Museo Nacional de Artes Visuales</a>",
+                "<a href='http://www.estadiocentenario.com.uy/'>Estadio Centenario</a>")
+
+
+UruguayLatLong%>%
+  leaflet()%>%
+  addTiles()%>%
+  addMarkers(icon = UruguayIcon, popup = UruguaySites)%>%
+  addMiniMap()
+
+
+
+```
